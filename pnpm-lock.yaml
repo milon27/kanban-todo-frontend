@@ -24,8 +24,8 @@ importers:
         specifier: 1.5.0
         version: 1.5.0
       better-auth:
-        specifier: ^1.3.7
-        version: 1.3.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(zod@3.22.2)
+        specifier: 1.3.7
+        version: 1.3.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(zod@3.25.76)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -63,8 +63,8 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       zod:
-        specifier: 3.22.2
-        version: 3.22.2
+        specifier: ^3.25.76
+        version: 3.25.76
       zustand:
         specifier: 5.0.8
         version: 5.0.8(@types/react@19.1.12)(react@19.1.1)(use-sync-external-store@1.5.0(react@19.1.1))
@@ -1669,8 +1669,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@3.22.2:
-    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
   zustand@5.0.8:
     resolution: {integrity: sha512-gyPKpIaxY9XcO2vSMrLbiER7QMAMGOQZVRdJ6Zi782jkbzZygq5GI9nG8g+sMgitRtndwaBSl7uiqC49o1SSiw==}
@@ -2378,7 +2378,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  better-auth@1.3.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(zod@3.22.2):
+  better-auth@1.3.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(zod@3.25.76):
     dependencies:
       '@better-auth/utils': 0.2.6
       '@better-fetch/fetch': 1.1.18
@@ -2391,7 +2391,7 @@ snapshots:
       jose: 5.10.0
       kysely: 0.28.5
       nanostores: 0.11.4
-      zod: 3.22.2
+      zod: 3.25.76
     optionalDependencies:
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
@@ -3125,7 +3125,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@3.22.2: {}
+  zod@3.25.76: {}
 
   zustand@5.0.8(@types/react@19.1.12)(react@19.1.1)(use-sync-external-store@1.5.0(react@19.1.1)):
     optionalDependencies:

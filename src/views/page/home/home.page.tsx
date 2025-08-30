@@ -5,7 +5,7 @@ import Category from "./components/category/category";
 import { useHomeController } from "./home.controller";
 
 export default function HomePage() {
-  const { categories, isLoading, error } = useHomeController();
+  const { categories, tasks, isLoading, error } = useHomeController();
 
   if (isLoading) {
     return <FullScreenLoading />;
@@ -23,7 +23,11 @@ export default function HomePage() {
         {/* render category/ column */}
         <div className="flex flex-row gap-x-4">
           {categories?.map((category) => (
-            <Category key={category.id} category={category} />
+            <Category
+              key={category.id}
+              category={category}
+              tasks={tasks || []}
+            />
           ))}
         </div>
       </div>

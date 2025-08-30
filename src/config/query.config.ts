@@ -11,4 +11,7 @@ export const queryClient = new QueryClient({
   },
 });
 
-export const QueryKeys = {};
+export const QueryKeys = {
+  CATEGORIES: "categories",
+  TASKS: "tasks",
+};

@@ -1,30 +1,37 @@
+import { QueryKeys } from "@/config/query.config";
 import { CategoryService } from "@/services/category/category.service";
+import { TaskService } from "@/services/task/task.service";
 import { useQuery } from "@tanstack/react-query";
 
 export const useHomeController = () => {
-  //   get all categories
+  // get all categories
   const {
     data: categories,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["categories"],
+    queryKey: [QueryKeys.CATEGORIES],
     queryFn: () => {
       return CategoryService.getAll();
     },
   });
 
   // get all tasks
-  // const { data: tasks } = useQuery({
-  //   queryKey: ["tasks"],
-  //   queryFn: () => {
-  //     return TaskService.getAll();
-  //   },
-  // });
+  const {
+    data: tasks,
+    isLoading: tasksLoading,
+    error: tasksError,
+  } = useQuery({
+    queryKey: [QueryKeys.TASKS],
+    queryFn: () => {
+      return TaskService.getAll();
+    },
+  });
 
   return {
     categories,
-    isLoading,
-    error,
+    isLoading: isLoading || tasksLoading,
+    error: error || tasksError,
+    tasks,
   };
 };

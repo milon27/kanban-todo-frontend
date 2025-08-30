@@ -14,6 +14,14 @@ export const useHomeController = () => {
     },
   });
 
+  // get all tasks
+  // const { data: tasks } = useQuery({
+  //   queryKey: ["tasks"],
+  //   queryFn: () => {
+  //     return TaskService.getAll();
+  //   },
+  // });
+
   return {
     categories,
     isLoading,

@@ -3,17 +3,17 @@ import { cn } from "@/lib/utils";
 import type { ITaskDto } from "@/services/task/task.dto";
 
 export default function Task({ task }: { task: ITaskDto }) {
-  const { setTask, removeTask } = useDragStore(); // todo: s->s.setTask
+  const { setTask, removeTask, task: dragTask } = useDragStore();
 
   return (
     <>
       <div
         key={task.id}
         className={cn(
-          "p-4 bg-gray-50 rounded-lg shadow border border-gray-100 cursor-grab transition-all"
-          //   {
-          //     "opacity-25": task.id === dragTask?.id,
-          //   }
+          "p-4 bg-gray-50 rounded-lg shadow border border-gray-100 cursor-grab transition-all",
+          {
+            "opacity-25": task.id === dragTask?.id,
+          }
         )}
         draggable
         onDragStart={() => {

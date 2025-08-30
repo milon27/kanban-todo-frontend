@@ -2,6 +2,9 @@ import type { ICategoryDto } from "@/services/category/category.dto";
 import type { ITaskDto } from "@/services/task/task.dto";
 import { Button } from "@/views/components/ui/button";
 import { Pencil } from "lucide-react";
+import React from "react";
+import Task from "../task";
+import DropArea from "./drop-area";
 
 export default function Category({
   category,
@@ -15,7 +18,7 @@ export default function Category({
   return (
     <div key={category.id} className="min-w-xs p-4">
       {/* each column */}
-      <div className="mb-4 flex flex-row justify-between items-center ">
+      <div className="flex flex-row justify-between items-center">
         <p className="text-xl font-bold text-gray-800">{category.title}</p>
         {category.id > 0 && (
           <>
@@ -26,26 +29,28 @@ export default function Category({
         )}
       </div>
       {category.id > 0 ? (
-        <div className="space-y-3">
+        <div>
+          {/* drop area */}
+          {<DropArea category={category} index={1} />}
           {tasksByCategory.length === 0 ? (
-            <div className="p-4 bg-gray-50 text-gray-400 font-thin rounded-lg">
-              No tasks created yet
-            </div>
+            <></>
           ) : (
             <>
-              {tasksByCategory.map((task) => (
-                <div
-                  key={task.id}
-                  className="p-4 bg-gray-50 rounded-lg shadow border border-gray-100 cursor-grab"
-                >
-                  {task.title}
-                </div>
+              {tasksByCategory.map((task, index) => (
+                <React.Fragment key={task.id}>
+                  <Task task={task} />
+                  {/* drop area */}
+                  {<DropArea category={category} index={index + 2} />}
+                </React.Fragment>
               ))}
             </>
           )}
+          <Button className="w-full" variant={"outline"}>
+            Create New Task
+          </Button>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-3 mt-5">
           <Button>Create</Button>
         </div>
       )}

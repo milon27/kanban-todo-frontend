@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "@/views/components/ui/card";
 import { Input } from "@/views/components/ui/input";
+import { RouteUrl } from "@/views/router/url";
+import { Link } from "react-router-dom";
 import { useLoginController } from "./login.controller";
 
 export default function LoginPage() {
@@ -67,6 +69,17 @@ export default function LoginPage() {
             <Button type="submit" className="w-full" size="lg">
               Sign in
             </Button>
+            <div className="text-center">
+              <p className="text-sm text-gray-600">
+                Don't have an account?{" "}
+                <Link
+                  to={RouteUrl.REGISTER}
+                  className="text-blue-600 hover:text-blue-800 font-medium"
+                >
+                  Sign up
+                </Link>
+              </p>
+            </div>
           </form>
         </CardContent>
       </Card>

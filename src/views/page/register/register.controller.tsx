@@ -2,30 +2,33 @@ import { authClient } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { LoginSchema, type ILoginSchema } from "./login.schema";
+import { RegisterSchema, type IRegisterSchema } from "./register.schema";
 
-export const useLoginController = () => {
+export const useRegisterController = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ILoginSchema>({
-    resolver: zodResolver(LoginSchema),
+  } = useForm<IRegisterSchema>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
-  const onSubmit = async (data: ILoginSchema) => {
+  const onSubmit = async (data: IRegisterSchema) => {
     try {
-      await authClient.signIn.email({
+      await authClient.signUp.email({
+        name: data.name,
         email: data.email,
         password: data.password,
       });
-      toast("Login successful");
+      toast("Registration successful");
     } catch (error) {
-      console.log("onSubmit login: ", error);
+      console.log("onSubmit register-----------: ", error);
       toast((error as Error).message);
     }
   };

@@ -1,4 +1,6 @@
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ErrorBoundary, type FallbackProps } from "react-error-boundary";
+import { queryClient } from "./config/query.config";
 import { Toaster } from "./views/components/ui/sonner";
 import ErrorPage from "./views/page/error/error.page";
 import { RootRouter } from "./views/router/root.router";
@@ -16,8 +18,10 @@ export default function App() {
   return (
     <div>
       <ErrorBoundary fallbackRender={fallbackRender}>
-        <RootRouter />
-        <Toaster />
+        <QueryClientProvider client={queryClient}>
+          <RootRouter />
+          <Toaster />
+        </QueryClientProvider>
       </ErrorBoundary>
     </div>
   );

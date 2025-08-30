@@ -1,27 +1,21 @@
 import Header from "@/views/components/common/header";
+import FullScreenLoading from "@/views/components/common/loading";
 import { Button } from "@/views/components/ui/button";
 import { Pencil } from "lucide-react";
-
-const categories = [
-  {
-    id: 1,
-    title: "Todo",
-  },
-  {
-    id: 2,
-    title: "In Progress",
-  },
-  {
-    id: 3,
-    title: "Done",
-  },
-  {
-    id: -5,
-    title: "Create New Column",
-  },
-];
+import ErrorPage from "../error/error.page";
+import { useHomeController } from "./home.controller";
 
 export default function HomePage() {
+  const { categories, isLoading, error } = useHomeController();
+
+  if (isLoading) {
+    return <FullScreenLoading />;
+  }
+
+  if (error) {
+    return <ErrorPage error={error} />;
+  }
+
   return (
     <div>
       <Header />
@@ -29,7 +23,7 @@ export default function HomePage() {
       <div className="container mx-auto min-h-screen overflow-x-scroll">
         {/* render category/ column */}
         <div className="flex flex-row gap-x-4">
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <div key={category.id} className="min-w-xs p-4 cursor-grab">
               {/* each column */}
               <div className="mb-4 flex flex-row justify-between items-center ">

@@ -28,10 +28,16 @@ export const CategoryService = {
     );
     return data.response;
   },
+
   getAll: async () => {
     const { data } = await ApiService.get<IResponse<ICategoryDto[]>>(
       "/v1/category"
     );
-    return data.response;
+    const createNewCategory: ICategoryDto = {
+      id: -10,
+      title: "Crate New Category",
+      createdAt: new Date().toISOString(),
+    };
+    return [...data.response, createNewCategory];
   },
 };

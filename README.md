@@ -2,6 +2,9 @@
 
 ## Run on development
 
+- Run backend from this repo: https://github.com/milon27/kanban-todo-backend
+- Run frontend
+
 ```bash
 pnpm i # install all dependencies
 pnpm dev # run development server on port 3000

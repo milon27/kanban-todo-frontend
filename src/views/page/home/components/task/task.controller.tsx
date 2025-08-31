@@ -33,8 +33,6 @@ export const useTaskController = () => {
     },
   });
 
-  console.log(createErrors);
-
   const onCreateTask = async (data: ICreateTaskSchema) => {
     try {
       await TaskService.create(data);

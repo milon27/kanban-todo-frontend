@@ -5,12 +5,14 @@ export const CreateTaskSchema = z.object({
   title: z.string().nonempty(),
   description: z.string().nonempty(),
   categoryId: z.number().positive(),
-  expireDate: z.string().datetime(),
+  expireDate: z.string().nonempty(),
   position: z.number().positive(),
 });
 export type ICreateTaskSchema = z.infer<typeof CreateTaskSchema>;
 
-export const UpdateTaskSchema = CreateTaskSchema.partial();
+export const UpdateTaskSchema = CreateTaskSchema.partial().extend({
+  id: z.number().positive(),
+});
 export type IUpdateTaskSchema = z.infer<typeof UpdateTaskSchema>;
 
 export const MoveTaskSchema = z.object({

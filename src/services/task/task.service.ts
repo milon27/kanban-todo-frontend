@@ -5,6 +5,7 @@ import type {
   IMoveTaskDto,
   ITaskDto,
   ITaskHistoryDto,
+  ITaskWithHistoryDto,
   IUpdateTaskDto,
 } from "./task.dto";
 import type {
@@ -17,6 +18,14 @@ export const TaskService = {
   // Get all tasks
   getAll: async () => {
     const { data } = await ApiService.get<IResponse<ITaskDto[]>>("/v1/task");
+    return data.response;
+  },
+
+  // Get single task by id
+  getById: async (id: number) => {
+    const { data } = await ApiService.get<IResponse<ITaskWithHistoryDto>>(
+      `/v1/task/${id}`
+    );
     return data.response;
   },
 

@@ -1,9 +1,17 @@
 import { useDragStore } from "@/hooks/drag.store";
 import { cn } from "@/lib/utils";
 import type { ITaskDto } from "@/services/task/task.dto";
+import Info from "@/views/components/common/info";
+import { differenceInCalendarDays } from "date-fns";
+import TaskDetails from "./task-details";
 
 export default function Task({ task }: { task: ITaskDto }) {
   const { setTask, removeTask, task: dragTask } = useDragStore();
+
+  const daysLeft = differenceInCalendarDays(
+    new Date(task.expireDate),
+    new Date()
+  );
 
   return (
     <>
@@ -23,7 +31,22 @@ export default function Task({ task }: { task: ITaskDto }) {
           removeTask();
         }}
       >
-        {task.title}
+        <div className="flex flex-row justify-between items-start">
+          <p className="flex-1">{task.title}</p>
+          <TaskDetails task={task} />
+        </div>
+        {daysLeft < 2 && (
+          <Info
+            message={
+              daysLeft < 0
+                ? "Deadline passed"
+                : daysLeft === 0
+                ? "Deadline today"
+                : `Deadline in ${daysLeft} days`
+            }
+            variant={daysLeft < 0 ? "error" : "warning"}
+          />
+        )}
       </div>
     </>
   );

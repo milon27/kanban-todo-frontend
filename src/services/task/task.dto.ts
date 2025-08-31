@@ -27,6 +27,10 @@ export type ITaskDto = {
   };
 };
 
+export type ITaskWithHistoryDto = ITaskDto & {
+  history: ITaskHistoryDto[];
+};
+
 export type ITaskHistoryDto = {
   id: number;
   taskId: number;

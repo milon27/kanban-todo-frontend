@@ -22,12 +22,12 @@ export default function Category({
       <div className="flex flex-row justify-between items-center">
         <p className="text-xl font-bold text-gray-800">{category.title}</p>
         {category.id > 0 && (
-          <>
-            {/* <Button variant="ghost" size="icon" className="ml-2">
-              <Pencil className="w-4 h-4" />
-            </Button> */}
+          <div className="flex flex-row justify-end items-center gap-x-2">
             <UpdateCategory category={category} />
-          </>
+            {/* <Button variant="ghost" size="icon" className="ml-2">
+              <Trash className="w-4 h-4" />
+            </Button> */}
+          </div>
         )}
       </div>
       {category.id > 0 ? (

@@ -57,19 +57,18 @@ export const useTaskController = () => {
   });
 
   const onUpdateTask = async (data: IUpdateTaskSchema) => {
-    console.log(data);
-    // try {
-    //   await TaskService.update(data.id, data);
-    //   await queryClient.invalidateQueries({
-    //     queryKey: [QueryKeys.TASKS],
-    //     type: "all",
-    //   });
-    //   setOpen(false);
-    //   toast("Task updated successfully");
-    // } catch (error) {
-    //   console.log("onUpdateTask: ", error);
-    //   toast((error as Error).message);
-    // }
+    try {
+      await TaskService.update(data.id, data);
+      await queryClient.invalidateQueries({
+        queryKey: [QueryKeys.TASKS],
+        type: "all",
+      });
+      setOpen(false);
+      toast("Task updated successfully");
+    } catch (error) {
+      console.log("onUpdateTask: ", error);
+      toast((error as Error).message);
+    }
   };
 
   // get task task history

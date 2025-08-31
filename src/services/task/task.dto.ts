@@ -7,7 +7,9 @@ import type {
 
 // request
 export type ICreateTaskDto = ICreateTaskSchema;
-export type IUpdateTaskDto = IUpdateTaskSchema;
+export type IUpdateTaskDto = Omit<IUpdateTaskSchema, "id" | "expireDate"> & {
+  expireDate: Date;
+};
 export type IMoveTaskDto = IMoveTaskSchema;
 
 // response

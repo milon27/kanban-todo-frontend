@@ -32,7 +32,7 @@ export default function Task({ task }: { task: ITaskDto }) {
           <p className="flex-1">{task.title}</p>
           <TaskDetails task={task} />
         </div>
-        {daysLeft < 2 && (
+        {daysLeft <= 2 && (
           <Info
             message={
               daysLeft < 0

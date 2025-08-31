@@ -38,7 +38,11 @@ export const TaskService = {
 
   // Update task
   update: async (id: number, schema: IUpdateTaskSchema) => {
-    const dto: IUpdateTaskDto = schema;
+    const dto: IUpdateTaskDto = {
+      title: schema.title,
+      description: schema.description,
+      expireDate: new Date(schema.expireDate!),
+    };
     const { data } = await ApiService.put<IResponse<string>>(
       `/v1/task/${id}`,
       dto

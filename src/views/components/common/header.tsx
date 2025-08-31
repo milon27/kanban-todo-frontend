@@ -9,6 +9,7 @@ export default function Header() {
   const handleLogout = async () => {
     await authClient.signOut();
     queryClient.clear();
+    sessionStorage.clear();
   };
 
   return (

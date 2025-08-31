@@ -34,7 +34,7 @@ export default function CreateTask({
   useEffect(() => {
     createSetValue("categoryId", category.id);
     createSetValue("position", length + 1);
-  }, [category.id]);
+  }, [open, category.id, length]);
 
   return (
     <div className="w-full flex justify-center">

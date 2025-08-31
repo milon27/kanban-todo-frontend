@@ -1,3 +1,5 @@
+import { KeyConstant } from "@/constant/key.constant";
+import { useFormPersist } from "@/hooks/use-form-persist.hook";
 import { DateUtil } from "@/lib/date-util";
 import type { ITaskDto } from "@/services/task/task.dto";
 import { Button } from "@/views/components/ui/button";
@@ -18,11 +20,26 @@ import { useEffect } from "react";
 import { useTaskController } from "./task.controller";
 
 export default function TaskDetails({ task }: { task: ITaskDto }) {
-  const { open, setOpen, updateRegister, updateSetValue, onUpdateTask } =
-    useTaskController();
+  const {
+    open,
+    setOpen,
+    updateRegister,
+    updateSetValue,
+    updateWatch,
+    onUpdateTask,
+  } = useTaskController();
   // const { data: taskHistory } = useGetTaskHistoryById(task.id);
 
+  useFormPersist(
+    KeyConstant.OFFLINE_KEY + task.id,
+    updateWatch,
+    updateSetValue
+  );
+
   useEffect(() => {
+    if (sessionStorage.getItem(KeyConstant.OFFLINE_KEY + task.id)) {
+      return;
+    }
     updateSetValue("id", task.id);
     updateSetValue("title", task.title);
     updateSetValue("description", task.description);
@@ -30,7 +47,7 @@ export default function TaskDetails({ task }: { task: ITaskDto }) {
       "expireDate",
       DateUtil.getOnlyDate(new Date(task.expireDate))
     );
-  });
+  }, [task.id]);
 
   return (
     <div className="flex justify-center">

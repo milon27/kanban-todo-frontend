@@ -52,8 +52,10 @@ export const useTaskController = () => {
     handleSubmit: updateHandleSubmit,
     formState: { errors: updateErrors },
     setValue: updateSetValue,
+    watch: updateWatch,
   } = useForm<IUpdateTaskSchema>({
     resolver: zodResolver(UpdateTaskSchema),
+    mode: "onChange",
   });
 
   const onUpdateTask = async (data: IUpdateTaskSchema) => {
@@ -88,6 +90,7 @@ export const useTaskController = () => {
     onCreateTask: createHandleSubmit(onCreateTask),
     createErrors,
     // update
+    updateWatch,
     updateSetValue,
     updateRegister,
     onUpdateTask: updateHandleSubmit(onUpdateTask),

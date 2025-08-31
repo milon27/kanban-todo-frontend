@@ -1,4 +1,5 @@
 import { queryClient, QueryKeys } from "@/config/query.config";
+import { DateUtil } from "@/lib/date-util";
 import {
   CreateTaskSchema,
   UpdateTaskSchema,
@@ -19,15 +20,15 @@ export const useTaskController = () => {
   const {
     register: createRegister,
     handleSubmit: createHandleSubmit,
+    setValue: createSetValue,
     formState: { errors: createErrors },
   } = useForm<ICreateTaskSchema>({
     resolver: zodResolver(CreateTaskSchema),
     defaultValues: {
       title: "",
-      description: "",
-      categoryId: 0,
-      expireDate: undefined,
-      position: 0,
+      categoryId: undefined,
+      expireDate: DateUtil.getOnlyDate(new Date()),
+      position: 1,
     },
   });
 
@@ -65,7 +66,7 @@ export const useTaskController = () => {
         queryKey: [QueryKeys.TASKS],
         type: "all",
       });
-      setOpen(false);
+      // setOpen(false);
       toast("Task updated successfully");
     } catch (error) {
       console.log("onUpdateTask: ", error);
@@ -86,6 +87,7 @@ export const useTaskController = () => {
     open,
     setOpen,
     // create
+    createSetValue,
     createRegister,
     onCreateTask: createHandleSubmit(onCreateTask),
     createErrors,

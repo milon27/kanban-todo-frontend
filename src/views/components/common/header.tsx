@@ -1,3 +1,4 @@
+import { queryClient } from "@/config/query.config";
 import { useUser } from "@/hooks/use-user.hook";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "../ui/button";
@@ -7,6 +8,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     await authClient.signOut();
+    queryClient.clear();
   };
 
   return (

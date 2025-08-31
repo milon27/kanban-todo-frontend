@@ -1,8 +1,8 @@
 import type { ICategoryDto } from "@/services/category/category.dto";
 import type { ITaskDto } from "@/services/task/task.dto";
-import { Button } from "@/views/components/ui/button";
 import React from "react";
 import DropArea from "../drop-area/drop-area";
+import CreateTask from "../task/create-task";
 import Task from "../task/task";
 import AddCategory from "./add-category";
 import UpdateCategory from "./update-category";
@@ -47,9 +47,10 @@ export default function Category({
               ))}
             </>
           )}
-          <Button className="w-full" variant={"outline"}>
+          {/* <Button className="w-full" variant={"outline"}>
             Create New Task
-          </Button>
+          </Button> */}
+          <CreateTask category={category} length={tasksByCategory.length} />
         </div>
       ) : (
         <div className="space-y-3 mt-5">

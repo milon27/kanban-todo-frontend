@@ -31,7 +31,10 @@ export const TaskService = {
 
   // Create new task
   create: async (schema: ICreateTaskSchema) => {
-    const dto: ICreateTaskDto = schema;
+    const dto: ICreateTaskDto = {
+      ...schema,
+      expireDate: new Date(schema.expireDate!),
+    };
     const { data } = await ApiService.post<IResponse<string>>("/v1/task", dto);
     return data.response;
   },

@@ -6,7 +6,9 @@ import type {
 } from "./task.schema";
 
 // request
-export type ICreateTaskDto = ICreateTaskSchema;
+export type ICreateTaskDto = Omit<ICreateTaskSchema, "expireDate"> & {
+  expireDate: Date;
+};
 export type IUpdateTaskDto = Omit<IUpdateTaskSchema, "id" | "expireDate"> & {
   expireDate: Date;
 };

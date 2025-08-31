@@ -2,6 +2,7 @@ import { KeyConstant } from "@/constant/key.constant";
 import { useFormPersist } from "@/hooks/use-form-persist.hook";
 import { DateUtil } from "@/lib/date-util";
 import type { ITaskDto } from "@/services/task/task.dto";
+import Info from "@/views/components/common/info";
 import { Button } from "@/views/components/ui/button";
 import {
   Dialog,
@@ -27,6 +28,7 @@ export default function TaskDetails({ task }: { task: ITaskDto }) {
     updateSetValue,
     updateWatch,
     onUpdateTask,
+    updateErrors,
   } = useTaskController();
   // const { data: taskHistory } = useGetTaskHistoryById(task.id);
 
@@ -77,6 +79,9 @@ export default function TaskDetails({ task }: { task: ITaskDto }) {
                 className="col-span-3"
                 {...updateRegister("title")}
               />
+              {updateErrors?.title && (
+                <Info message={updateErrors.title.message} />
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="desc">Description</Label>
@@ -85,6 +90,9 @@ export default function TaskDetails({ task }: { task: ITaskDto }) {
                 className="col-span-3"
                 {...updateRegister("description")}
               />
+              {updateErrors?.description && (
+                <Info message={updateErrors.description.message} />
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="expireDate">Expire Date</Label>
@@ -94,6 +102,9 @@ export default function TaskDetails({ task }: { task: ITaskDto }) {
                 className="col-span-3"
                 {...updateRegister("expireDate")}
               />
+              {updateErrors?.expireDate && (
+                <Info message={updateErrors.expireDate.message} />
+              )}
             </div>
           </div>
           <DialogFooter>
@@ -101,7 +112,6 @@ export default function TaskDetails({ task }: { task: ITaskDto }) {
               type="submit"
               onClick={() => {
                 onUpdateTask();
-                setOpen(false);
               }}
             >
               Update Changes

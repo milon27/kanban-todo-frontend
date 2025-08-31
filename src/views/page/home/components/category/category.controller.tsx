@@ -16,6 +16,7 @@ export const useCategoryController = () => {
   // create new category
   const {
     register: createRegister,
+    reset: createReset,
     handleSubmit: createHandleSubmit,
     formState: { errors: createErrors },
   } = useForm<ICreateCategorySchema>({
@@ -33,6 +34,7 @@ export const useCategoryController = () => {
         type: "all",
       });
       setOpen(false);
+      createReset();
       toast("Category created successfully");
     } catch (error) {
       console.log("onCreateCategory: ", error);

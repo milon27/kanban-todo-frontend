@@ -29,10 +29,12 @@ export default function Task({ task }: { task: ITaskDto }) {
         }}
       >
         <div className="flex flex-row justify-between items-start">
-          <p className="flex-1">{task.title}</p>
+          <div className="flex-1">
+            <p>{task.title}</p>
+          </div>
           <TaskDetails task={task} />
         </div>
-        {daysLeft <= 2 && (
+        {daysLeft <= 2 ? (
           <Info
             message={
               daysLeft < 0
@@ -43,6 +45,12 @@ export default function Task({ task }: { task: ITaskDto }) {
             }
             variant={daysLeft < 0 ? "error" : "warning"}
           />
+        ) : (
+          <>
+            <p className="text-gray-500 text-sm font-thin">
+              {DateUtil.getDayDifference(new Date(task.expireDate))} days left.
+            </p>
+          </>
         )}
       </div>
     </>

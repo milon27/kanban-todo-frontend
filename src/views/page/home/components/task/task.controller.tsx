@@ -20,6 +20,7 @@ export const useTaskController = () => {
   const {
     register: createRegister,
     handleSubmit: createHandleSubmit,
+    reset: createReset,
     setValue: createSetValue,
     formState: { errors: createErrors },
   } = useForm<ICreateTaskSchema>({
@@ -28,7 +29,7 @@ export const useTaskController = () => {
       title: "",
       categoryId: undefined,
       expireDate: DateUtil.getOnlyDate(new Date()),
-      position: 1,
+      position: undefined,
     },
   });
 
@@ -40,6 +41,7 @@ export const useTaskController = () => {
         type: "all",
       });
       setOpen(false);
+      createReset();
       toast("Task created successfully");
     } catch (error) {
       console.log("onCreateTask: ", error);

@@ -6,5 +6,7 @@ export const CreateCategorySchema = z.object({
 });
 export type ICreateCategorySchema = z.infer<typeof CreateCategorySchema>;
 
-export const UpdateCategorySchema = CreateCategorySchema;
+export const UpdateCategorySchema = CreateCategorySchema.extend({
+  id: z.number().positive(),
+});
 export type IUpdateCategorySchema = z.infer<typeof UpdateCategorySchema>;

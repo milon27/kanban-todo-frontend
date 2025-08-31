@@ -20,10 +20,12 @@ export const CategoryService = {
     );
     return data.response;
   },
-  update: async (schema: IUpdateCategorySchema) => {
-    const dto: IUpdateCategoryDto = schema;
+  update: async (id: number, schema: IUpdateCategorySchema) => {
+    const dto: IUpdateCategoryDto = {
+      title: schema.title,
+    };
     const { data } = await ApiService.put<IResponse<string>>(
-      "/v1/category",
+      `/v1/category/${id}`,
       dto
     );
     return data.response;

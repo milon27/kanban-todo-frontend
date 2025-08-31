@@ -6,7 +6,7 @@ import type {
 
 // request
 export type ICreateCategoryDto = ICreateCategorySchema;
-export type IUpdateCategoryDto = IUpdateCategorySchema;
+export type IUpdateCategoryDto = Omit<IUpdateCategorySchema, "id">;
 
 // response
 export type ICategoryDto = {

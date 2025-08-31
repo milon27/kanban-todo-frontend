@@ -1,11 +1,11 @@
 import type { ICategoryDto } from "@/services/category/category.dto";
 import type { ITaskDto } from "@/services/task/task.dto";
 import { Button } from "@/views/components/ui/button";
-import { Pencil } from "lucide-react";
 import React from "react";
 import DropArea from "../drop-area/drop-area";
 import Task from "../task/task";
 import AddCategory from "./add-category";
+import UpdateCategory from "./update-category";
 
 export default function Category({
   category,
@@ -23,9 +23,10 @@ export default function Category({
         <p className="text-xl font-bold text-gray-800">{category.title}</p>
         {category.id > 0 && (
           <>
-            <Button variant="ghost" size="icon" className="ml-2">
+            {/* <Button variant="ghost" size="icon" className="ml-2">
               <Pencil className="w-4 h-4" />
-            </Button>
+            </Button> */}
+            <UpdateCategory category={category} />
           </>
         )}
       </div>

@@ -3,8 +3,9 @@ import type { ITaskDto } from "@/services/task/task.dto";
 import { Button } from "@/views/components/ui/button";
 import { Pencil } from "lucide-react";
 import React from "react";
-import Task from "../task";
-import DropArea from "./drop-area";
+import DropArea from "../drop-area/drop-area";
+import Task from "../task/task";
+import AddCategory from "./add-category";
 
 export default function Category({
   category,
@@ -51,7 +52,7 @@ export default function Category({
         </div>
       ) : (
         <div className="space-y-3 mt-5">
-          <Button>Create</Button>
+          <AddCategory />
         </div>
       )}
     </div>

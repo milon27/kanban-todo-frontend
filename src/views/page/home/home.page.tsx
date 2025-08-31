@@ -19,7 +19,7 @@ export default function HomePage() {
     <div>
       <Header />
       {/* content : kanban board*/}
-      <div className="container mx-auto min-h-screen overflow-x-scroll">
+      <div className="container mx-auto h-[90vh] overflow-x-scroll">
         {/* render category/ column */}
         <div className="flex flex-row gap-x-4">
           {categories?.map((category) => (

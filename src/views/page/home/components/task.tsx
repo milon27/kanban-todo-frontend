@@ -10,9 +10,9 @@ export default function Task({ task }: { task: ITaskDto }) {
       <div
         key={task.id}
         className={cn(
-          "p-4 bg-gray-50 rounded-lg shadow border border-gray-100 cursor-grab transition-all",
+          "p-4 bg-gray-50 rounded-lg shadow border border-gray-100 cursor-grab transition-opacity duration-200",
           {
-            "opacity-25": task.id === dragTask?.id,
+            "opacity-20": task.id === dragTask?.id,
           }
         )}
         draggable

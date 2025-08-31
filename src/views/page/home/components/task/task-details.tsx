@@ -8,7 +8,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -29,8 +28,9 @@ export default function TaskDetails({ task }: { task: ITaskDto }) {
     updateWatch,
     onUpdateTask,
     updateErrors,
+    useGetTaskHistoryById,
   } = useTaskController();
-  // const { data: taskHistory } = useGetTaskHistoryById(task.id);
+  const { data: taskHistory } = useGetTaskHistoryById(task.id);
 
   useFormPersist(
     KeyConstant.OFFLINE_KEY + task.id,
@@ -107,16 +107,29 @@ export default function TaskDetails({ task }: { task: ITaskDto }) {
               )}
             </div>
           </div>
-          <DialogFooter>
-            <Button
-              type="submit"
-              onClick={() => {
-                onUpdateTask();
-              }}
-            >
-              Update Changes
-            </Button>
-          </DialogFooter>
+
+          <div className="w-full space-y-2">
+            <div className="flex flex-row justify-end">
+              <Button
+                type="submit"
+                onClick={() => {
+                  onUpdateTask();
+                }}
+              >
+                Update Changes
+              </Button>
+            </div>
+            {/* history */}
+            <div className="w-full space-y-2 mt-4">
+              {taskHistory?.map((message, index) => {
+                return (
+                  <div key={index} className="w-full font-thin text-gray-500">
+                    <p>♐︎ {message}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

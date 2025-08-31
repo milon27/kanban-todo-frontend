@@ -4,8 +4,6 @@ import type {
   ICreateTaskDto,
   IMoveTaskDto,
   ITaskDto,
-  ITaskHistoryDto,
-  ITaskWithHistoryDto,
   IUpdateTaskDto,
 } from "./task.dto";
 import type {
@@ -23,7 +21,7 @@ export const TaskService = {
 
   // Get single task by id
   getById: async (id: number) => {
-    const { data } = await ApiService.get<IResponse<ITaskWithHistoryDto>>(
+    const { data } = await ApiService.get<IResponse<ITaskDto>>(
       `/v1/task/${id}`
     );
     return data.response;
@@ -65,7 +63,7 @@ export const TaskService = {
 
   // Get task history
   getHistory: async (id: number) => {
-    const { data } = await ApiService.get<IResponse<ITaskHistoryDto[]>>(
+    const { data } = await ApiService.get<IResponse<string[]>>(
       `/v1/task/${id}/history`
     );
     return data.response;

@@ -30,16 +30,3 @@ export type ITaskDto = {
     createdAt: DateTimeString;
   };
 };
-
-export type ITaskWithHistoryDto = ITaskDto & {
-  history: ITaskHistoryDto[];
-};
-
-export type ITaskHistoryDto = {
-  id: number;
-  taskId: number;
-  fromCategoryId: number | null;
-  toCategoryId: number;
-  action: string;
-  createdAt: DateTimeString;
-};

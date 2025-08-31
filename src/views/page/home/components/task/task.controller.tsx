@@ -80,7 +80,7 @@ export const useTaskController = () => {
   const useGetTaskHistoryById = (taskId: number) => {
     return useQuery({
       queryKey: [QueryKeys.TASKS, taskId],
-      queryFn: () => TaskService.getById(taskId),
+      queryFn: () => TaskService.getHistory(taskId),
       enabled: !!taskId,
     });
   };

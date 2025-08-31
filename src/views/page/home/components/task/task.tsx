@@ -1,17 +1,14 @@
 import { useDragStore } from "@/hooks/drag.store";
+import { DateUtil } from "@/lib/date-util";
 import { cn } from "@/lib/utils";
 import type { ITaskDto } from "@/services/task/task.dto";
 import Info from "@/views/components/common/info";
-import { differenceInCalendarDays } from "date-fns";
 import TaskDetails from "./task-details";
 
 export default function Task({ task }: { task: ITaskDto }) {
   const { setTask, removeTask, task: dragTask } = useDragStore();
 
-  const daysLeft = differenceInCalendarDays(
-    new Date(task.expireDate),
-    new Date()
-  );
+  const daysLeft = DateUtil.getDayDifference(new Date(task.expireDate));
 
   return (
     <>

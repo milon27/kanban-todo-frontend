@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { differenceInCalendarDays, format } from "date-fns";
 
 export const DateUtil = {
   /**
@@ -33,5 +33,16 @@ export const DateUtil = {
     createdAtDate.setMinutes(new Date().getMinutes());
     createdAtDate.setSeconds(new Date().getSeconds());
     return createdAtDate;
+  },
+  /**
+   * @param date Date
+   * @returns difference in days between the given date and current date
+   * @example
+   * const date = new Date("2023-05-09");
+   * const difference = DateUtil.getDayDifference(date);
+   * console.log(difference); // 3
+   */
+  getDayDifference: (date: Date) => {
+    return differenceInCalendarDays(date, new Date());
   },
 };

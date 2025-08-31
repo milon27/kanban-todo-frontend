@@ -1,5 +1,9 @@
 # Kanban board style todo app with React, Vite and Tailwind CSS (without a library)
 
+## Video Demo:
+
+- https://youtu.be/w6GPEGHy070
+
 ## Run on development
 
 - Run backend from this repo: https://github.com/milon27/kanban-todo-backend
